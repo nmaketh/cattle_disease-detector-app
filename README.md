@@ -1,14 +1,18 @@
 # SudVet — AI-Powered Cattle Disease Detection System
+<img width="312" height="543" alt="Skermskoot 2026-03-04 205708" src="https://github.com/user-attachments/assets/a3fb81a0-f8d0-4cb5-9731-2b3b111a71b6" />
+<img width="1299" height="621" alt="Skermskoot 2026-03-04 213240" src="https://github.com/user-attachments/assets/d57b1a57-266b-4136-bf5e-46fd2c30f9bc" />
+
+
 
 SudVet is a full-stack veterinary health platform built to support Community Animal Health Workers (CAHWs) in remote areas where access to qualified veterinarians is limited. Field workers use the mobile app to report sick cattle and receive AI-driven disease predictions. Veterinarians review cases, provide clinical guidance, and communicate with field workers through a web dashboard — all in real time.
 
 ---
-
+Video Demo: https://drive.google.com/file/d/15IpR5NHZv8HTGVq6RaxIVnmeutWlIGoz/view?usp=sharing
 ## Live Deployments
 
 | Service | URL |
 |---|---|
-| Web App (Flutter) | https://incomparable-snickerdoodle-f26e1f.netlify.app |
+| Web App (Flutter) | https://startling-gecko-c54150.netlify.app/ |
 | Vet Dashboard | https://sudvet-dashboard.vercel.app |
 | Backend API | https://sudvet-ops-api.onrender.com |
 | API Docs | https://sudvet-ops-api.onrender.com/docs |
