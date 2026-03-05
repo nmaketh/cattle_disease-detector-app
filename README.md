@@ -70,6 +70,7 @@ Video Demo: https://drive.google.com/file/d/15IpR5NHZv8HTGVq6RaxIVnmeutWlIGoz/vi
 
 
 ## Project Structure
+```
 
 sudvet-_app/
 ├── lib/                        # Flutter app source
