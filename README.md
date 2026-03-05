@@ -46,7 +46,7 @@ Video Demo: https://drive.google.com/file/d/15IpR5NHZv8HTGVq6RaxIVnmeutWlIGoz/vi
 
 
 ## Architecture Overview
-
+```
 ┌─────────────────────┐     ┌──────────────────────┐
 │   Flutter App        │────▶│   ops_api (FastAPI)   │
 │   (CAHW mobile/web)  │     │   PostgreSQL (Supabase)│
@@ -58,7 +58,7 @@ Video Demo: https://drive.google.com/file/d/15IpR5NHZv8HTGVq6RaxIVnmeutWlIGoz/vi
 │   (Vet / Admin)      │     │   Random Forest       │
 └─────────────────────┘     │   Rules Engine        │
                              └───────────────────────┘
-
+```
 **Stack:**
 - **Mobile/Web:** Flutter 3 — BLoC pattern, Go Router, Material 3
 - **Backend:** FastAPI + PostgreSQL (Supabase) + SQLAlchemy + Alembic
