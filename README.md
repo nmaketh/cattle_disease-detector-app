@@ -6,7 +6,7 @@
 
 SudVet is a full-stack veterinary health platform built to support Community Animal Health Workers (CAHWs) in remote areas where access to qualified veterinarians is limited. Field workers use the mobile app to report sick cattle and receive AI-driven disease predictions. Veterinarians review cases, provide clinical guidance, and communicate with field workers through a web dashboard — all in real time.
 
----
+
 Video Demo: https://drive.google.com/file/d/15IpR5NHZv8HTGVq6RaxIVnmeutWlIGoz/view?usp=sharing
 ## Live Deployments
 
