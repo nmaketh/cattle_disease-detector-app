@@ -95,6 +95,7 @@ sudvet-_app/
 ├── deploy/                     # Docker Compose prod + Nginx configs
 ├── scripts/                    # Developer launcher scripts
 └── docker-compose.yml          # Local full-stack setup
+```
 
 
 
@@ -117,7 +118,7 @@ This runs the backend API, dashboard, and ML service together.
 ```bash
 git clone https://github.com/nmaketh/sudvet-_app.git
 cd sudvet-_app
-```
+
 
 **2. Create your environment file:**
 ```bash
