@@ -174,7 +174,7 @@ flutter run \
 ```
 
 **4. Build release APK:**
-```bash
+
 bash scripts/build-release.sh apk
 
 The APK will be at `build/app/outputs/flutter-apk/app-release.apk`.
@@ -225,7 +225,7 @@ Expected output: **23 tests passing**
 
 ```bash
 flutter test
-```
+
 
 
 ## Key Features by Role
