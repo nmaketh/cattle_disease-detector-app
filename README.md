@@ -4,7 +4,7 @@
 
 
 
-SudVet is a full-stack veterinary health platform built to support Community Animal Health Workers (CAHWs) in remote areas where access to qualified veterinarians is limited. Field workers use the mobile app to report sick cattle and receive AI-driven disease predictions. Veterinarians review cases, provide clinical guidance, and communicate with field workers through a web dashboard — all in real time.
+SudVet is a full-stack veterinary health platform built to support Community Animal Health Workers (CAHWs) in remote areas where access to qualified veterinarians is limited. Field workers use the mobile app to report sick cattle and receive AI-driven disease predictions. Veterinarians review cases, provide clinical guidance, and communicate with field workers through a web dashboard all in real time.
 
 
 Video Demo: https://drive.google.com/file/d/15IpR5NHZv8HTGVq6RaxIVnmeutWlIGoz/view?usp=sharing
@@ -25,17 +25,14 @@ Video Demo: https://drive.google.com/file/d/15IpR5NHZv8HTGVq6RaxIVnmeutWlIGoz/vi
 | Vet | vet@cattle.ai | Password123! |
 | CAHW | cahw@cattle.ai | Password123! |
 
----
 
 ## What It Does
 
 - **Field workers (CAHWs)** open the mobile/web app, register an animal, select observed symptoms, and optionally upload a photo. The AI predicts the disease instantly.
 - **The AI engine** uses a two-tier approach: a MobileNetV2 CNN for image analysis combined with a Random Forest symptom classifier and a rules engine for ECF/CBPP detection.
 - **Veterinarians** log into the dashboard, review flagged cases in a triage queue, claim cases, provide clinical advice (assessment, treatment plan, prescription, follow-up date), and chat directly with the field worker.
-- **CAHWs** receive the vet's advice inside their app on the case detail page — in read-only format.
+- **CAHWs** receive the vet's advice inside their app on the case detail page in read-only format.
 - **Admins** manage users, assign cases, and monitor system health and analytics.
-
----
 
 ## Diseases Detected
 
@@ -47,11 +44,9 @@ Video Demo: https://drive.google.com/file/d/15IpR5NHZv8HTGVq6RaxIVnmeutWlIGoz/vi
 | CBPP | Contagious Bovine Pleuropneumonia |
 | Normal | No disease detected (healthy animal) |
 
----
 
 ## Architecture Overview
 
-```
 ┌─────────────────────┐     ┌──────────────────────┐
 │   Flutter App        │────▶│   ops_api (FastAPI)   │
 │   (CAHW mobile/web)  │     │   PostgreSQL (Supabase)│
@@ -63,7 +58,6 @@ Video Demo: https://drive.google.com/file/d/15IpR5NHZv8HTGVq6RaxIVnmeutWlIGoz/vi
 │   (Vet / Admin)      │     │   Random Forest       │
 └─────────────────────┘     │   Rules Engine        │
                              └───────────────────────┘
-```
 
 **Stack:**
 - **Mobile/Web:** Flutter 3 — BLoC pattern, Go Router, Material 3
@@ -74,11 +68,9 @@ Video Demo: https://drive.google.com/file/d/15IpR5NHZv8HTGVq6RaxIVnmeutWlIGoz/vi
 - **Email:** SendGrid (OTP verification)
 - **Deployment:** Docker Compose, Render, Vercel, Netlify
 
----
 
 ## Project Structure
 
-```
 sudvet-_app/
 ├── lib/                        # Flutter app source
 │   ├── app/                    # Router, theme, shell
@@ -102,9 +94,8 @@ sudvet-_app/
 ├── deploy/                     # Docker Compose prod + Nginx configs
 ├── scripts/                    # Developer launcher scripts
 └── docker-compose.yml          # Local full-stack setup
-```
 
----
+
 
 ## Installation & Running Locally
 
@@ -115,7 +106,7 @@ sudvet-_app/
 - [Node.js 18+](https://nodejs.org/) (for dashboard dev)
 - Python 3.11+ (for backend dev without Docker)
 
----
+
 
 ### Option 1 — Full Stack with Docker (Recommended)
 
@@ -144,7 +135,7 @@ SMTP_PORT=587
 SMTP_USER=apikey
 SMTP_PASSWORD=your-sendgrid-api-key
 SMTP_FROM=your-email@example.com
-```
+
 
 **3. Start all services:**
 ```bash
@@ -159,7 +150,7 @@ docker compose up --build
 | Backend API docs | http://localhost:8002/docs |
 | ML service | http://localhost:8001/health |
 
----
+
 
 ### Option 2 — Flutter App Only (Against Live Backend)
 
@@ -183,10 +174,10 @@ flutter run \
 **4. Build release APK:**
 ```bash
 bash scripts/build-release.sh apk
-```
+
 The APK will be at `build/app/outputs/flutter-apk/app-release.apk`.
 
----
+
 
 ### Option 3 — Dashboard Only (Against Live Backend)
 
@@ -194,11 +185,9 @@ The APK will be at `build/app/outputs/flutter-apk/app-release.apk`.
 cd dashboard
 npm install
 NEXT_PUBLIC_API_URL=https://sudvet-ops-api.onrender.com npm run dev
-```
 
 Open http://localhost:3000
 
----
 
 ### Option 4 — Backend API Only (Without Docker)
 
@@ -209,11 +198,10 @@ source .venv/bin/activate       # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 cp .env.example .env            # Fill in your values
 uvicorn app.main:app --reload --port 8002
-```
+
 
 API docs available at http://localhost:8002/docs
 
----
 
 ## Running Tests
 
@@ -223,7 +211,7 @@ API docs available at http://localhost:8002/docs
 cd ops_api
 pip install -r requirements-dev.txt
 pytest tests/ -v
-```
+
 
 Expected output: **23 tests passing**
 - `test_case_endpoints.py` — 11 HTTP integration tests (case lifecycle, triage, chat)
@@ -237,7 +225,6 @@ Expected output: **23 tests passing**
 flutter test
 ```
 
----
 
 ## Key Features by Role
 
@@ -263,11 +250,11 @@ flutter test
 - Analytics dashboard (case counts, disease distribution, vet performance)
 - System health and error log monitoring
 
----
+
 
 ## AI Prediction Flow
 
-```
+
 CAHW selects symptoms + optional photo
          │
          ▼
@@ -282,13 +269,13 @@ POST /predict/full
          │
          ▼
 Response stored in case record + returned to Flutter app
-```
+
 
 The symptom model was trained on a purpose-built synthetic dataset covering all four diseases plus a healthy (Normal) class, and achieves strong classification performance across all categories. The rules engine provides an additional layer of confidence for ECF and CBPP by cross-checking symptom patterns against clinical criteria.
 
 Diseases: LSD · FMD · ECF · CBPP — plus Normal (healthy, no disease)
 
----
+
 
 ## Security
 
@@ -300,7 +287,7 @@ Diseases: LSD · FMD · ECF · CBPP — plus Normal (healthy, no disease)
 - Chat privacy: VET ↔ CAHW only; ADMINs blocked from case chat
 - Rate limiting on all auth endpoints
 
----
+
 
 ## Deployment Architecture
 
@@ -315,7 +302,6 @@ Diseases: LSD · FMD · ECF · CBPP — plus Normal (healthy, no disease)
 
 Production deployments use Docker Compose (`deploy/docker-compose.prod.yml`) with environment variables injected at runtime. No secrets are stored in the repository.
 
----
 
 ## Environment Variables Reference
 
@@ -336,7 +322,7 @@ Production deployments use Docker Compose (`deploy/docker-compose.prod.yml`) wit
 | `RUN_MIGRATIONS_ON_START` | Auto-run DB migrations on startup |
 | `RUN_SEED_ON_START` | Seed default users (dev only) |
 
----
+
 
 ## Developer Scripts
 
@@ -352,13 +338,12 @@ scripts/build-release.sh apk    # Build release APK
 scripts/build-release.sh web    # Build Flutter web
 ```
 
----
 
 ## Analysis
 
 ### Objectives Achieved
 
-The core objective of the project was to build a tool that allows Community Animal Health Workers — who typically have no internet access to veterinary experts — to get fast, AI-assisted disease guidance in the field. This was fully achieved:
+The core objective of the project was to build a tool that allows Community Animal Health Workers who typically have no internet access to veterinary experts  to get fast, AI-assisted disease guidance in the field. This was fully achieved:
 
 - **AI disease detection** works with both image and symptom input across all four diseases (LSD, FMD, ECF, CBPP) plus a healthy (Normal) classification. The symptom classifier was trained on synthetic data covering all categories and performs reliably across the full spectrum. The rules engine further validates ECF and CBPP predictions against known clinical symptom patterns.
 - **Vet-CAHW communication loop** is fully functional: cases submitted by CAHW are triaged by vets, clinical advice flows back to the field worker in real time
@@ -374,11 +359,10 @@ The core objective of the project was to build a tool that allows Community Anim
 
 1. **Collect real-world field data** — augmenting the synthetic training dataset with verified clinical cases from veterinary institutions would further improve model robustness and generalization in the field.
 2. **Add SMS-based OTP** as a fallback for regions where email is unreliable but mobile data is available.
-3. **Introduce a community health worker dashboard** — a simplified read-only view of all their submitted cases and outcomes over time.
+3. **Introduce a community health worker dashboard** a simplified read-only view of all their submitted cases and outcomes over time.
 4. **Integrate government veterinary databases** to cross-reference case locations against known disease outbreak zones.
 5. **Add push notifications** to alert CAHWs when their vet has responded to a case.
 
----
 
 ## License
 
