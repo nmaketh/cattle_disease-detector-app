@@ -187,9 +187,11 @@ The APK will be at `build/app/outputs/flutter-apk/app-release.apk`.
 cd dashboard
 npm install
 NEXT_PUBLIC_API_URL=https://sudvet-ops-api.onrender.com npm run dev
+```
 
 Open http://localhost:3000
 
+---
 
 ### Option 4 — Backend API Only (Without Docker)
 
@@ -200,10 +202,11 @@ source .venv/bin/activate       # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 cp .env.example .env            # Fill in your values
 uvicorn app.main:app --reload --port 8002
-
+```
 
 API docs available at http://localhost:8002/docs
 
+---
 
 ## Running Tests
 
@@ -213,7 +216,7 @@ API docs available at http://localhost:8002/docs
 cd ops_api
 pip install -r requirements-dev.txt
 pytest tests/ -v
-
+```
 
 Expected output: **23 tests passing**
 - `test_case_endpoints.py` — 11 HTTP integration tests (case lifecycle, triage, chat)
@@ -225,8 +228,9 @@ Expected output: **23 tests passing**
 
 ```bash
 flutter test
+```
 
-
+---
 
 ## Key Features by Role
 
@@ -252,11 +256,11 @@ flutter test
 - Analytics dashboard (case counts, disease distribution, vet performance)
 - System health and error log monitoring
 
-
+---
 
 ## AI Prediction Flow
 
-
+```
 CAHW selects symptoms + optional photo
          │
          ▼
@@ -271,13 +275,13 @@ POST /predict/full
          │
          ▼
 Response stored in case record + returned to Flutter app
-
+```
 
 The symptom model was trained on a purpose-built synthetic dataset covering all four diseases plus a healthy (Normal) class, and achieves strong classification performance across all categories. The rules engine provides an additional layer of confidence for ECF and CBPP by cross-checking symptom patterns against clinical criteria.
 
 Diseases: LSD · FMD · ECF · CBPP — plus Normal (healthy, no disease)
 
-
+---
 
 ## Security
 
@@ -289,7 +293,7 @@ Diseases: LSD · FMD · ECF · CBPP — plus Normal (healthy, no disease)
 - Chat privacy: VET ↔ CAHW only; ADMINs blocked from case chat
 - Rate limiting on all auth endpoints
 
-
+---
 
 ## Deployment Architecture
 
@@ -304,6 +308,7 @@ Diseases: LSD · FMD · ECF · CBPP — plus Normal (healthy, no disease)
 
 Production deployments use Docker Compose (`deploy/docker-compose.prod.yml`) with environment variables injected at runtime. No secrets are stored in the repository.
 
+---
 
 ## Environment Variables Reference
 
@@ -324,7 +329,7 @@ Production deployments use Docker Compose (`deploy/docker-compose.prod.yml`) wit
 | `RUN_MIGRATIONS_ON_START` | Auto-run DB migrations on startup |
 | `RUN_SEED_ON_START` | Seed default users (dev only) |
 
-
+---
 
 ## Developer Scripts
 
@@ -335,7 +340,7 @@ scripts/run-dashboard.ps1       # Start Next.js dashboard
 scripts/run-mobile-api.ps1      # Start mobile API
 scripts/run-ml-service.ps1      # Start ML inference service
 
-# Bash
+
 scripts/build-release.sh apk    # Build release APK
 scripts/build-release.sh web    # Build Flutter web
 ```
